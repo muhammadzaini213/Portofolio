@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zaini's Portofolio">
+    <meta name="author" content="Muhammad Zaini">
+    <title>Zaini's Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Radley:ital@1&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="welcome">
+        <p id="welcome-text" class="center-text"></p>
+    </div>
+
+    <div id="main-menu">
+        <canvas id="main-menu-canvas"></canvas>
+    </div>
+
+    <div id="about"> 
+        <div id="about-par">
+        <p id="about-title">About</p>
+        <div class="about-text">
+
+        <p>Muhammad Zaini is a multitalented programmer who specializes in algorithm and automation. He has a good understanding of Python, Java, NodeJs, and can use AI to assist him in problem solving faster. He is not only good at programming, but also designing.</p>
+        <p>Not only programming, Zaini can write compelling stories with various scenarios. Just provide a little concept, and he can deliver the storyline.</p>
+        </div>
+        </div>
+        
+        <p class="next">Next</p>
+        <p class="prev">Previous</p>
+        <p class="menu">Main Menu</p>
+        <canvas id="about-canvas"></canvas>
+
+    </div>
+
+    <div id="skills">
+        <canvas id="skills-canvas"></canvas>
+        <p id="skills-title">Skills</p>
+        <p class="next">Next</p>
+        <p class="prev">Previous</p>
+        <p class="menu">Main Menu</p>
+        <p id="skills-hint">Hint<br>
+            WASD to move<br>
+            Click to shoot</p>
+    </div>
+
+    <div id="prototypes">
+        <canvas id="prototypes-canvas"></canvas>
+        <div id="prototypes-div">
+            <p id="prototypes-title">Prototypes</p>
+            <p id="prototypes-hint">Hint:<br>WASD to choose<br>Enter to view</p>
+            <p id="prototypes-clue">Purple: Finished<br>Red   : In progress</p>
+        </div>
+        <p class="next">Next</p>
+        <p class="prev">Previous</p>
+        <p class="menu">Main Menu</p>
+    </div>
+
+    <div id="contacts">
+
+
+        <div id="terminal-div">
+            <p id="terminal-title">Terminal</p>
+            <div>
+                <p id="terminal-text"></p>
+                <div id="terminal-input">
+                    <p>termina >>>  </p>
+                    <p id="input" contenteditable="true"></p>
+                </div>
+            </div>
+        </div>
+
+        <p id="contacts-title">Contacts</p>
+       
+        <p class="next">Next</p>
+        <p class="prev">Previous</p>
+        <p class="menu">Main Menu</p>
+
+        <canvas id="contacts-canvas"></canvas>
+
+    </div>
+
+
+    <div id="experience">
+        <canvas id="experience-canvas"></canvas>
+        <!-- <p id="experience-title">Experience</p> -->
+        <p class="next">Next</p>
+        <p class="prev">Previous</p>
+        <p class="menu">Main Menu</p>
+        <p id="experience-hint">Hint<br>
+            WS to move up and down
+            </p>
+    </div>
+
+    <div id="project">
+        <canvas id="project-canvas"></canvas>
+        <p id="project-title">Projects</p>
+        <p class="next">Next</p>
+        <p class="prev">Previous</p>
+        <p class="menu">Main Menu</p>
+        <p id="project-hint">Hint<br>
+            WASD to move <br>Push white bar to scroll
+            </p>
+        
+    </div>
+    <script src="project.js"></script>
+    <script src="experience.js"></script>
+    <script src="contacts.js"></script>
+    <script src="prototypes.js"></script>
+    <script src="about.js"></script>
+    <script src="skills.js"></script>
+    <script src="mainMenu.js"></script>
+    <script src="main.js"></script>
+    </body>
+</html>

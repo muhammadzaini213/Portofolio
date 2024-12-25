@@ -1,0 +1,332 @@
+body{
+    background-color: black;
+    font-family: "Roboto Mono", serif;
+    font-optical-sizing: auto;
+    color: whitesmoke;
+    /* overflow: hidden; */
+    user-select: none; 
+}
+
+#main-menu {
+    display: none;
+    opacity: 0;
+}
+
+#main-menu.show {
+    display: block;
+    opacity: 1;
+}
+
+
+#about {
+    display: none;
+    opacity: 0;
+}
+
+#about.show {
+    display: flex; /* Enables Flexbox for horizontal layout */
+    justify-content: space-between; /* Ensures proper spacing between items */
+    align-items: center; /* Vertically centers items */
+    flex-wrap: nowrap; /* Prevents items from wrapping */
+    height: 100vh; /* Sets the height to fill the viewport */
+    opacity: 1;
+}
+
+
+
+#about-par {
+    flex: 2 0 66.66%; /* Text takes 2 parts out of 3 with fixed width */
+    margin: 0;
+    box-sizing: border-box; /* Ensures padding doesn't affect size */
+}
+
+#about-canvas {
+    flex: 1 0 33.33%; /* Canvas takes 1 part out of 3 with fixed width */
+    max-width: 33.33%; /* Prevents canvas from expanding beyond its share */
+    height: 80vh; /* Fixed height for canvas */
+    margin-right: 10vw;
+}
+
+#about-title {
+    position: absolute; /* Positions the text absolutely */
+    font-size: 4rem;
+    left: 5vw;
+    top: 2vh
+}
+
+.about-text {
+    position: absolute;
+    top: 55%;
+    left: 5vw;
+    width: calc(100vw/3*2 - 10vw) ;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+
+.next {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2rem;
+}
+
+.prev {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 2rem;
+}
+
+.menu {
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin: 2rem;
+}
+
+.next, .prev, .menu {
+    transition: transform 0.3s ease, font-size 0.3s ease;
+    -webkit-transition: transform 0.3s ease, font-size 0.3s ease;
+    -moz-transition: transform 0.3s ease, font-size 0.3s ease;
+    -ms-transition: transform 0.3s ease, font-size 0.3s ease;
+    -o-transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.next:hover, .prev:hover, .menu:hover {
+    transform: scale(1.2);
+    font-size: 1.2em;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+
+#skills {
+    display: none;
+    opacity: 0;
+}
+
+#skills.show {
+    display: block;
+    opacity: 1;
+}
+
+
+#skills-title {
+    position: absolute; /* Positions the text absolutely */
+    font-size: 3rem;
+    width: 100vw;
+    text-align: center;
+    top: 0vh
+}
+
+#skills-hint {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 2rem;
+}
+
+
+#prototypes {
+    display: none;
+    opacity: 0;
+}
+
+#prototypes.show {
+    display: flex; /* Enables Flexbox for horizontal layout */
+    justify-content: space-between; /* Ensures proper spacing between items */
+    align-items: center; /* Vertically centers items */
+    flex-wrap: nowrap; /* Prevents items from wrapping */
+    height: 100vh; /* Sets the height to fill the viewport */
+    opacity: 1;
+}
+
+
+
+#prototypes-div {
+    flex: 2 0 40%; /* Text takes 2 parts out of 3 with fixed width */
+    margin: 0;
+    box-sizing: border-box;
+    height: 100vh; /* Ensures padding doesn't affect size */
+}
+
+#prototypes-canvas {
+    flex: 4 0 60%; /* Canvas takes 1 part out of 3 with fixed width */
+    max-width: 60%; /* Prevents canvas from expanding beyond its share */
+    height: 80vh; /* Fixed height for canvas */
+    margin-right: 3vw;
+    border: 1px solid white;
+}
+
+
+#prototypes-title {
+    position: absolute;
+    top: 10vh;
+    font-size: 3rem;
+}
+
+#prototypes-hint {
+    position: absolute;
+    top: 50vh;
+}
+
+
+#prototypes-clue {
+    position: absolute;
+    bottom: 10vh;
+}
+
+
+#contacts {
+    display: none;
+    opacity: 0;
+}
+
+#contacts.show {
+    display: flex; /* Enables Flexbox for horizontal layout */
+    justify-content: space-between; /* Ensures proper spacing between items */
+    align-items: center; /* Vertically centers items */
+    flex-wrap: nowrap; /* Prevents items from wrapping */
+    height: 100vh; /* Sets the height to fill the viewport */
+    opacity: 1;
+}
+
+#contacts-title {
+    position: absolute;
+    top: 4vh;
+    left: 4vw;
+    font-size: 3rem;
+}
+
+#terminal-div {
+    flex: 4 0 60%; /* Canvas takes 1 part out of 3 with fixed width */
+    max-width: 60%; /* Prevents canvas from expanding beyond its share */
+    margin-top: 10vh;
+    max-height: 60vh;
+    height: 60vh; /* Fixed height for canvas */
+    margin-left: 4vw;
+    top: -1vh;
+    border: 1px solid white;
+}
+
+#contacts-canvas {
+    flex: 1 0 33.33%; /* Canvas takes 1 part out of 3 with fixed width */
+    max-width: 33.33%; /* Prevents canvas from expanding beyond its share */
+    height: 80vh; /* Fixed height for canvas */
+    margin-right: 10vw;
+}
+
+#terminal-title {
+    padding-left: 1vw;
+    background-color: white;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    color: black;
+    margin: 0;
+}
+
+#terminal-text {
+    padding-left: 1vw;
+    max-height: 100%;
+    color: white;
+    font-size: 0.7rem;
+
+}
+
+
+#terminal-input {
+    display: none;
+    opacity: 0;
+}
+#terminal-input.show {
+    display: flex;
+    align-items: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    opacity: 1;
+    font-size: 0.7rem;
+
+}
+
+#terminal-input p {
+    margin: 0;
+}
+
+
+#terminal-input p[contenteditable="true"] {
+    flex: 1;
+    padding: 4px; /* Optional for better spacing */
+    outline: none; /* Removes the default focus outline */
+}
+
+
+#experience {
+    display: none;
+    opacity: 0;
+}
+
+#experience.show {
+    display: block;
+    opacity: 1;
+}
+
+#experience-title {
+    position: absolute; /* Positions the text absolutely */
+    font-size: 3rem;
+    width: 100vw;
+    text-align: center;
+    top: 0vh
+}
+
+
+#experience-hint {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 2rem;
+}
+
+
+#project {
+    display: none;
+    opacity: 0;
+}
+
+#project.show {
+    display: block;
+    opacity: 1;
+}
+
+#project-hint {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 2rem;
+}
+
+#project-title {
+    position: absolute; /* Positions the text absolutely */
+    font-size: 3rem;
+    text-align: center;
+    top: 5vh;
+    left: 10vw
+}
+
+.center-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
