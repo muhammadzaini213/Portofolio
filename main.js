@@ -128,3 +128,6 @@ function enterFullscreen() {
 
 // Call this function to initially check orientation and update
 checkOrientation();
+
+
+window.addEventListener("resize", checkOrientation);
