@@ -95,3 +95,36 @@ checkFirstTime()
 
 
 
+
+
+
+// Function to check if the device is in landscape mode
+function checkOrientation() {
+    const messageElement = document.getElementById("orientation-message");
+
+    if (window.innerWidth > window.innerHeight) {
+        // Landscape mode - Hide the message and go fullscreen
+        messageElement.style.display = "none";
+        enterFullscreen();
+    } else {
+        // Portrait mode - Show the message
+        messageElement.style.display = "block";
+    }
+}
+
+// Function to request fullscreen
+function enterFullscreen() {
+    const docEl = document.documentElement;
+    if (docEl.requestFullscreen) {
+        docEl.requestFullscreen();
+    } else if (docEl.mozRequestFullScreen) { // Firefox
+        docEl.mozRequestFullScreen();
+    } else if (docEl.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        docEl.webkitRequestFullscreen();
+    } else if (docEl.msRequestFullscreen) { // IE/Edge
+        docEl.msRequestFullscreen();
+    }
+}
+
+// Call this function to initially check orientation and update
+checkOrientation();
