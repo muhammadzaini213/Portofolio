@@ -1,3 +1,4 @@
+
 /* =========================
    MAIN FUNCTION
 ========================= */
@@ -6,10 +7,6 @@ function experienceCanvas() {
         isActive: true,
         keysPressed: {}
     };
-
-    // Reset body HTML
-    const originalBodyHTML = document.body.innerHTML;
-    document.body.innerHTML = originalBodyHTML;
 
     /* =========================
        DOM ELEMENTS
@@ -37,13 +34,13 @@ function experienceCanvas() {
        WHITE SPRITE CLASS
     ========================= */
     class WhiteSprite {
-        constructor(ctx, canvasElement) {
+        constructor(ctx, canvasElement, config) {
             this.ctx = ctx;
             this.canvas = canvasElement;
-            this.width = EXPERIENCE_CONFIG.boxSize;
-            this.height = EXPERIENCE_CONFIG.boxSize;
-            this.color = EXPERIENCE_CONFIG.boxColor;
-            this.speed = EXPERIENCE_CONFIG.moveSpeed;
+            this.width = config.boxSize;
+            this.height = config.boxSize;
+            this.color = config.boxColor;
+            this.speed = config.moveSpeed;
 
             this.x = canvasElement.width / 2;
             this.y = canvasElement.height / 2;
@@ -51,6 +48,8 @@ function experienceCanvas() {
             this.mouseY = this.y;
 
             this.projectiles = [];
+            this.projectileSpeed = config.projectileSpeed;
+            this.projectileSize = config.projectileSize;
             this.cameraY = this.y - this.canvas.height / 2;
         }
 
@@ -60,19 +59,15 @@ function experienceCanvas() {
         }
 
         move(direction) {
-            switch (direction) {
-                case 'up':
-                    this.y -= this.speed;
-                    break;
-                case 'down':
-                    this.y += this.speed;
-                    break;
-                case 'left':
-                    this.x -= this.speed;
-                    break;
-                case 'right':
-                    this.x += this.speed;
-                    break;
+            const movements = {
+                'up': () => this.y -= this.speed,
+                'down': () => this.y += this.speed,
+                'left': () => this.x -= this.speed,
+                'right': () => this.x += this.speed
+            };
+
+            if (movements[direction]) {
+                movements[direction]();
             }
 
             // Keep box within canvas boundaries
@@ -103,8 +98,8 @@ function experienceCanvas() {
 
         updateProjectiles() {
             this.projectiles = this.projectiles.filter((projectile) => {
-                projectile.x += projectile.direction.x * EXPERIENCE_CONFIG.projectileSpeed;
-                projectile.y += projectile.direction.y * EXPERIENCE_CONFIG.projectileSpeed;
+                projectile.x += projectile.direction.x * this.projectileSpeed;
+                projectile.y += projectile.direction.y * this.projectileSpeed;
 
                 // Keep projectile within bounds
                 return (
@@ -120,10 +115,10 @@ function experienceCanvas() {
             this.ctx.fillStyle = COLORS.white;
             this.projectiles.forEach((projectile) => {
                 this.ctx.fillRect(
-                    projectile.x - EXPERIENCE_CONFIG.projectileSize / 2,
-                    projectile.y - this.cameraY - EXPERIENCE_CONFIG.projectileSize / 2,
-                    EXPERIENCE_CONFIG.projectileSize,
-                    EXPERIENCE_CONFIG.projectileSize
+                    projectile.x - this.projectileSize / 2,
+                    projectile.y - this.cameraY - this.projectileSize / 2,
+                    this.projectileSize,
+                    this.projectileSize
                 );
             });
         }
@@ -160,9 +155,10 @@ function experienceCanvas() {
        CONSTELLATION CLASS
     ========================= */
     class Constellation {
-        constructor(ctx, canvasElement) {
+        constructor(ctx, canvasElement, config) {
             this.ctx = ctx;
             this.canvas = canvasElement;
+            this.config = config;
             this.items = [];
             this.connections = [];
         }
@@ -207,11 +203,11 @@ function experienceCanvas() {
             // Set font style based on type
             if (type === "title") {
                 this.ctx.fillStyle = COLORS.white;
-                this.ctx.font = EXPERIENCE_CONFIG.titleFont;
+                this.ctx.font = this.config.titleFont;
                 this.ctx.textAlign = "center";
             } else {
                 this.ctx.fillStyle = COLORS.white;
-                this.ctx.font = EXPERIENCE_CONFIG.textFont;
+                this.ctx.font = this.config.textFont;
                 this.ctx.textAlign = "center";
             }
 
@@ -224,15 +220,15 @@ function experienceCanvas() {
 
             // Draw background rectangle for text
             if (type !== "circle") {
-                const textHeight = EXPERIENCE_CONFIG.lineHeight * text.length;
-                const rectTop = displayY - (textHeight / 2) - EXPERIENCE_CONFIG.textPadding;
-                const rectHeight = textHeight + EXPERIENCE_CONFIG.textPadding * 2;
+                const textHeight = this.config.lineHeight * text.length;
+                const rectTop = displayY - (textHeight / 2) - this.config.textPadding;
+                const rectHeight = textHeight + this.config.textPadding * 2;
 
                 this.ctx.fillStyle = COLORS.black;
                 this.ctx.fillRect(
-                    displayX - maxWidth / 2 - EXPERIENCE_CONFIG.textPadding,
+                    displayX - maxWidth / 2 - this.config.textPadding,
                     rectTop,
-                    maxWidth + EXPERIENCE_CONFIG.textPadding * 2,
+                    maxWidth + this.config.textPadding * 2,
                     rectHeight
                 );
             }
@@ -242,8 +238,8 @@ function experienceCanvas() {
             text.forEach((line, index) => {
                 const textX = displayX + textShakeOffset.x;
                 const textY = displayY + textShakeOffset.y - 
-                    ((text.length - 1) / 2) * EXPERIENCE_CONFIG.lineHeight + 
-                    index * EXPERIENCE_CONFIG.lineHeight;
+                    ((text.length - 1) / 2) * this.config.lineHeight + 
+                    index * this.config.lineHeight;
                 this.ctx.fillText(line, textX, textY);
             });
 
@@ -253,7 +249,7 @@ function experienceCanvas() {
                 this.ctx.arc(
                     displayX,
                     displayY,
-                    EXPERIENCE_CONFIG.circleRadius,
+                    this.config.circleRadius,
                     0,
                     Math.PI * 2
                 );
@@ -264,7 +260,7 @@ function experienceCanvas() {
 
         drawLine(x1, y1, x2, y2) {
             this.ctx.strokeStyle = COLORS.white;
-            this.ctx.lineWidth = EXPERIENCE_CONFIG.lineWidth;
+            this.ctx.lineWidth = this.config.lineWidth;
             this.ctx.beginPath();
             this.ctx.moveTo(x1, y1);
             this.ctx.lineTo(x2, y2);
@@ -298,9 +294,9 @@ function experienceCanvas() {
             // Add title
             this.addItem(widthPer * 50, heightPer * 10, "Experience", "title");
 
-            // Add experience items
+            // Add experience items from config
             let currentHeight = 30;
-            EXPERIENCE_CONFIG.experiences.forEach((exp) => {
+            this.config.experiences.forEach((exp) => {
                 this.addConnectedItems(
                     widthPer * 50,
                     heightPer * currentHeight,
@@ -357,10 +353,6 @@ function experienceCanvas() {
     function resetAndNavigate(targetCanvas) {
         experienceDiv.classList.remove("show");
         STATE.isActive = false;
-
-        const originalBodyHTML = document.body.innerHTML;
-        document.body.innerHTML = originalBodyHTML;
-
         targetCanvas();
     }
 
@@ -389,11 +381,11 @@ function experienceCanvas() {
     /* =========================
        INITIALIZATION
     ========================= */
-    // Initialize sprite and constellation
-    const box = new WhiteSprite(context, canvas);
-    const constellation = new Constellation(context, canvas);
+    // Initialize sprite and constellation with config
+    const box = new WhiteSprite(context, canvas, EXPERIENCE_CONFIG);
+    const constellation = new Constellation(context, canvas, EXPERIENCE_CONFIG);
 
-    // Populate constellation with experiences
+    // Populate constellation with experiences from config
     constellation.populateExperiences();
     constellation.redraw();
 

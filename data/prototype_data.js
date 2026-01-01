@@ -20,21 +20,20 @@ const PROTOTYPE_CONFIG = {
         },
         {
             id: 1,
-            position: { x: 56, y: 73 }, // in percentage
+            position: { x: 40, y: 80 }, // in percentage
             color: "purple",
-            link: "https://youtu.be/dQw4w9WgXcQ?si=lqJuyITXD8Vb1X3f",
-            label: "SuperAI 122"
+            link: "https://github.com/sleepymor/StardustStudio-YAPPIECleaningService",
+            label: "YAPPIE Cleaning Service!"
         },
         {
             id: 2,
-            position: { x: 40, y: 50 }, // in percentage
-            color: "blue",
-            link: "https://example.com",
-            label: "Third item!"
+            position: { x: 70, y: 70 }, // in percentage
+            color: "purple",
+            link: "https://github.com/sleepymor/GlobalIllumination-GimersiaJam",
+            label: "Deck Of Ascent"
         }
     ],
     connections: [
-        [0, 1] // Connect item 0 to item 1
     ],
     ui: {
         itemSize: 15,

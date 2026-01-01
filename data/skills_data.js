@@ -62,14 +62,14 @@ const SKILLS_CONFIG = {
         {
             id: 7,
             position: { x: 54, y: 72 },
-            imageSrc: "assets/skills/dart.png",
-            label: "Dart"
+            imageSrc: "assets/skills/unity.png",
+            label: "Unity"
         },
         {
             id: 8,
             position: { x: 70, y: 80 },
-            imageSrc: "assets/skills/flutter.png",
-            label: "Flutter"
+            imageSrc: "assets/skills/godot.png",
+            label: "Godot"
         },
         {
             id: 9,

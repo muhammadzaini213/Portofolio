@@ -20,20 +20,28 @@ const EXPERIENCE_CONFIG = {
             description: "Graduate from Senior Highschool 1 Penajam"
         },
         {
-            year: "2024",
+            year: "2024 - Present",
             description: "Undergraduate Computer Science Student on ITK"
         },
         {
-            year: "2024",
+            year: "September 2024",
             description: "Participate on EXPO for Informatics"
         },
         {
-            year: "2024",
+            year: "2024 - 2025",
             description: "Infinite Public Relation Departement Apprentice Staff"
         },
         {
-            year: "2024",
+            year: "2024 - 2025",
             description: "Joined IEEE ITK Student Branch AnP Staff"
+        },
+        {
+            year: "July 2025 - August 2025",
+            description: "Participate on GEMASTIK XVII in Game Development Field"
+        },
+        {
+            year: "November 2025",
+            description: "Participate on GIMERSIA Gamejam"
         }
     ]
 };
