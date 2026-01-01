@@ -102,7 +102,7 @@ function checkOrientation() {
 
     if (isLandscape) {
         messageElement.style.display = "none";
-        enterFullscreen();
+        // enterFullscreen();
     } else {
         messageElement.style.display = "block";
     }

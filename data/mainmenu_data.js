@@ -35,5 +35,6 @@ const MENU_CONFIG = {
 
 const COLORS = {
     white: "white",
+    black: "black",
     whiteTransparent: (alpha) => `rgba(255, 255, 255, ${alpha})`
 };
