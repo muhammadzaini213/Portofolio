@@ -1,133 +1,112 @@
-function firstTime(){
-    let i = 0;
-    const text1 = 'Looks like we had a new guest...';
-    const text2 = 'Let me introduce myself first...';
-    const text3 = 'My name is Muhammad Zaini. Nice to meet you...';
-    const speed = 50;
-    const delay = 2000;
+/* =========================
+   TYPING ENGINE
+========================= */
 
-    firstText()
-    function firstText() {
-        if (i < text1.length) {
-            document.getElementById("welcome-text").innerHTML += text1.charAt(i);
-            i++;
-            setTimeout(firstText, speed);
-        } else {
-            i = 0;
-            setTimeout(secondText, delay)
-        }
-    }
-    
-    function secondText() {
-        if (i < text2.length) {
-            if (i === 0) document.getElementById("welcome-text").innerHTML = ""; 
-            document.getElementById("welcome-text").innerHTML += text2.charAt(i);
-            i++;
-            setTimeout(secondText, speed);
-        } else {
-            i = 0; 
-            setTimeout(thirdText, delay)
+function typeSequence(element, texts, speed, delay, onFinish) {
+    let textIndex = 0;
+    let charIndex = 0;
 
-        }
-    }
-    
-    function thirdText() {
-        if (i < text3.length) {
-            if (i === 0) document.getElementById("welcome-text").innerHTML = ""; 
-            document.getElementById("welcome-text").innerHTML += text3.charAt(i);
-            i++;
-            setTimeout(thirdText, speed);
+    function typeChar() {
+        if (charIndex < texts[textIndex].length) {
+            element.innerHTML += texts[textIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(typeChar, speed);
         } else {
-            setTimeout(() => {
-                document.getElementById("welcome").remove(); 
-                localStorage.setItem("isFirstTime", true);
-                const mainMenu = document.getElementById('main-menu');
-                mainMenu.classList.add('show');
-                mainCanvas()
-            }, delay); 
+            textIndex++;
+            if (textIndex < texts.length) {
+                setTimeout(() => {
+                    element.innerHTML = "";
+                    charIndex = 0;
+                    typeChar();
+                }, delay);
+            } else {
+                setTimeout(onFinish, delay);
+            }
         }
     }
+
+    element.innerHTML = "";
+    typeChar();
+}
+
+/* =========================
+   WELCOME FLOW
+========================= */
+
+function finishWelcome() {
+    document.getElementById("welcome").remove();
+    localStorage.setItem("isFirstTime", true);
+
+    const mainMenu = document.getElementById("main-menu");
+    mainMenu.classList.add("show");
+    mainCanvas();
+}
+
+function firstTime() {
+    const welcomeText = document.getElementById("welcome-text");
+
+    typeSequence(
+        welcomeText,
+        WELCOME_CONFIG.firstTimeTexts,
+        WELCOME_CONFIG.typingSpeed,
+        WELCOME_CONFIG.delay,
+        finishWelcome
+    );
 }
 
 function notFirstTime() {
-    let i = 0;
-    const text1 = "Welcome, I've been waiting for you...";
-    const speed = 50;
-    const delay = 2000;
+    const welcomeText = document.getElementById("welcome-text");
 
-    firstText()
-    function firstText() {
-        if (i < text1.length) {
-            document.getElementById("welcome-text").innerHTML += text1.charAt(i);
-            i++;
-            setTimeout(firstText, speed);
-        } else {
-            setTimeout(() => {
-                document.getElementById("welcome").remove(); 
-                localStorage.setItem("isFirstTime", true);
-                const mainMenu = document.getElementById('main-menu');
-                mainMenu.classList.add('show');
-                mainCanvas()
-            }, delay); 
-        }
-    }
+    typeSequence(
+        welcomeText,
+        [WELCOME_CONFIG.returningText],
+        WELCOME_CONFIG.typingSpeed,
+        WELCOME_CONFIG.delay,
+        finishWelcome
+    );
 }
 
-function checkFirstTime(){
-    let isTrue = localStorage.getItem("isFirstTime");
-    if(isTrue){
-        notFirstTime()
+function checkFirstTime() {
+    const isFirstTime = localStorage.getItem("isFirstTime");
+
+    if (isFirstTime) {
+        notFirstTime();
     } else {
-        firstTime()
+        firstTime();
     }
 }
 
-checkFirstTime()
+checkFirstTime();
 
+/* =========================
+   ORIENTATION & FULLSCREEN
+========================= */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Function to check if the device is in landscape mode
-function checkOrientation() {
-    const messageElement = document.getElementById("orientation-message");
-
-    if (window.innerWidth > window.innerHeight) {
-        // Landscape mode - Hide the message and go fullscreen
-        messageElement.style.display = "none";
-        enterFullscreen();
-    } else {
-        // Portrait mode - Show the message
-        messageElement.style.display = "block";
-    }
-}
-
-// Function to request fullscreen
 function enterFullscreen() {
     const docEl = document.documentElement;
+
     if (docEl.requestFullscreen) {
         docEl.requestFullscreen();
-    } else if (docEl.mozRequestFullScreen) { // Firefox
+    } else if (docEl.mozRequestFullScreen) {
         docEl.mozRequestFullScreen();
-    } else if (docEl.webkitRequestFullscreen) { // Chrome, Safari, Opera
+    } else if (docEl.webkitRequestFullscreen) {
         docEl.webkitRequestFullscreen();
-    } else if (docEl.msRequestFullscreen) { // IE/Edge
+    } else if (docEl.msRequestFullscreen) {
         docEl.msRequestFullscreen();
     }
 }
 
-// Call this function to initially check orientation and update
+function checkOrientation() {
+    const messageElement = document.getElementById("orientation-message");
+    const isLandscape = window.innerWidth > window.innerHeight;
+
+    if (isLandscape) {
+        messageElement.style.display = "none";
+        enterFullscreen();
+    } else {
+        messageElement.style.display = "block";
+    }
+}
+
 checkOrientation();
-
-
 window.addEventListener("resize", checkOrientation);
