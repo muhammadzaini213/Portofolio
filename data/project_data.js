@@ -19,14 +19,14 @@ const PROJECT_CONFIG = {
         {
             x: 200,
             y: 100,
-            image: "assets/ujian-kita.png",
+            image: "assets/projects/ujian-kita.png",
             name: "Ujian Kita",
             link: "https://github.com/muhammadzaini213/Ujian_Kita"
         },
         {
             x: 400,
             y: 200,
-            image: "assets/manajemen-jadwal.png",
+            image: "assets/projects/manajemen-jadwal.png",
             name: "Manajemen Jadwal",
             link: "https://github.com/muhammadzaini213/Aplikasi-Manajemen-Jadwal-Mahasiswa"
         }

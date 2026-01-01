@@ -1,7 +1,7 @@
 // Data Configuration (JSON format)
 const PROTOTYPE_CONFIG = {
     cursor: {
-        imageSrc: 'assets/aimCursor.png',
+        imageSrc: 'assets/prototypes/aimCursor.png',
         size: 50,
         speed: 5,
         aimThreshold: 10
